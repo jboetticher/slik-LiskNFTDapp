@@ -41,6 +41,7 @@ import HomePage from './components/HomePage';
 import TransactionsPage from './components/TransactionsPage';
 import AccountPage from './components/AccountPage';
 import MarketPage from './components/MarketPage';
+import InventoryPage from './components/InventoryPage';
 import CreateAccountDialog from './components/dialogs/CreateAccountDialog';
 import TransferFundsDialog from './components/dialogs/TransferFundsDialog';
 import CreateNFTTokenDialog from './components/dialogs/CreateNFTTokenDialog';
@@ -182,6 +183,7 @@ let Frame = props => {
 							<Route path="/accounts/:address" component={AccountPage} />
 							<Route path="/transactions" component={TransactionsPage} />
 							<Route path="/market" component={MarketPage} />
+							<Route path="/inventory" component={InventoryPage} />
 						</Switch>
 					</Container>
 

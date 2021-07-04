@@ -27,7 +27,6 @@ function HomePage() {
     <ThemeProvider theme={SlikTheme}>
       <Card className={classes.frontPageCard}>
         <CardContent>
-          <div>nope</div>
           <img src="/slkLogo.svg" style={{width: "50%", margin: "auto", left: "25%", position: "relative"}} />
           <Typography align="center" style={{marginTop: "16px"}}>
             A new NFT marketplace made for the Lisk ecosystem.
