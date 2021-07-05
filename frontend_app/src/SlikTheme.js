@@ -29,6 +29,12 @@ let CardTheme = createMuiTheme({
       light: '#000',
       dark: '#000'
     },
+    secondary: {
+      main: '#254898',
+      light: '#254898',
+      dark: '#254898',
+      contrastColor: '#fff'
+    },
     text: {
       primary: '#000'
     }

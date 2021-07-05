@@ -7,9 +7,10 @@ import {
   Button,
   DialogActions,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { NodeInfoContext } from "../../context";
 import { transferNFT } from "../../utils/transactions/transfer_nft";
+import SlikTheme, { CardTheme } from "../../SlikTheme";
 import * as api from "../../api";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  modalTitle: {
+    background: theme.palette.secondary.main,
+		color: "#fff"
+  }
 }));
 
 export default function TransferNFTDialog(props) {
@@ -51,54 +56,52 @@ export default function TransferNFTDialog(props) {
 
   return (
     <Fragment>
-      <Dialog         
-        PaperProps={{
-          style: {
-            backgroundColor: '#254898',
-          },
-        }} open={props.open} onBackdropClick={props.handleClose}>
-        <DialogTitle id="alert-dialog-title">
+      <Dialog
+        open={props.open} onBackdropClick={props.handleClose}>
+        <DialogTitle className={classes.modalTitle} id="alert-dialog-title">
           {"Transfer NFT"}
         </DialogTitle>
         <DialogContent>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              label="Token Name"
-              value={data.name}
-              name="name"
-              onChange={handleChange}
-              fullWidth
-            />
-            <TextField
-              label="Token ID"
-              value={data.nftId}
-              name="nftId"
-              onChange={handleChange}
-              fullWidth
-            />
-            <TextField
-              label="Recipient address"
-              value={data.recipientAddress}
-              name="recipientAddress"
-              onChange={handleChange}
-              helperText={`Address of the account that will receive the NFT.`}
-              fullWidth
-            />
-            <TextField
-              label="Fee"
-              value={data.fee}
-              name="fee"
-              onChange={handleChange}
-              fullWidth
-            />
-            <TextField
-              label="Passphrase"
-              value={data.passphrase}
-              name="passphrase"
-              onChange={handleChange}
-              fullWidth
-            />
-          </form>
+          <ThemeProvider theme={CardTheme}>
+            <form className={classes.root} noValidate autoComplete="off">
+              <TextField
+                label="Token Name"
+                value={data.name}
+                name="name"
+                onChange={handleChange}
+                fullWidth
+              />
+              <TextField
+                label="Token ID"
+                value={data.nftId}
+                name="nftId"
+                onChange={handleChange}
+                fullWidth
+              />
+              <TextField
+                label="Recipient address"
+                value={data.recipientAddress}
+                name="recipientAddress"
+                onChange={handleChange}
+                helperText={`Address of the account that will receive the NFT.`}
+                fullWidth
+              />
+              <TextField
+                label="Fee"
+                value={data.fee}
+                name="fee"
+                onChange={handleChange}
+                fullWidth
+              />
+              <TextField
+                label="Passphrase"
+                value={data.passphrase}
+                name="passphrase"
+                onChange={handleChange}
+                fullWidth
+              />
+            </form>
+          </ThemeProvider>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSend}>Transfer NFT</Button>

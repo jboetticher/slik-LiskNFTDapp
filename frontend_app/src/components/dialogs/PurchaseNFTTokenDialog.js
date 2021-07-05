@@ -7,11 +7,12 @@ import {
   Button,
   DialogActions,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { NodeInfoContext } from "../../context";
 import { purchaseNFTToken } from "../../utils/transactions/purchase_nft_token";
 import * as api from "../../api";
 import { transactions } from "@liskhq/lisk-client";
+import { CardTheme } from "../../SlikTheme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  modalTitle: {
+    background: theme.palette.secondary.main,
+		color: "#fff"
+  }
 }));
 
 export default function PurchaseNFTTokenDialog(props) {
@@ -58,56 +63,52 @@ export default function PurchaseNFTTokenDialog(props) {
 
   return (
     <Fragment>
-      <Dialog 
-        PaperProps={{
-          style: {
-            backgroundColor: '#254898',
-          },
-        }}
-        open={props.open} onBackdropClick={props.handleClose}>
-        <DialogTitle id="alert-dialog-title">
+      <Dialog open={props.open} onBackdropClick={props.handleClose}>
+        <DialogTitle id="alert-dialog-title" className={classes.modalTitle}>
           {"Purchase NFT"}
         </DialogTitle>
-        <DialogContent>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              label="Token Name"
-              value={data.name}
-              name="name"
-              onChange={handleChange}
-              fullWidth
-            />
-            <TextField
-              label="Token ID"
-              value={data.nftId}
-              name="nftId"
-              onChange={handleChange}
-              fullWidth
-            />
-            <TextField
-              label="Purchase Value"
-              value={data.purchaseValue}
-              name="purchaseValue"
-              onChange={handleChange}
-              helperText={`Minimum purchase value: ${minPurchaseValue}`}
-              fullWidth
-            />
-            <TextField
-              label="Fee"
-              value={data.fee}
-              name="fee"
-              onChange={handleChange}
-              fullWidth
-            />
-            <TextField
-              label="Passphrase"
-              value={data.passphrase}
-              name="passphrase"
-              onChange={handleChange}
-              fullWidth
-            />
-          </form>
-        </DialogContent>
+        <ThemeProvider theme={CardTheme}>
+          <DialogContent>
+            <form className={classes.root} noValidate autoComplete="off">
+              <TextField
+                label="Token Name"
+                value={data.name}
+                name="name"
+                onChange={handleChange}
+                fullWidth
+              />
+              <TextField
+                label="Token ID"
+                value={data.nftId}
+                name="nftId"
+                onChange={handleChange}
+                fullWidth
+              />
+              <TextField
+                label="Purchase Value"
+                value={data.purchaseValue}
+                name="purchaseValue"
+                onChange={handleChange}
+                helperText={`Minimum purchase value: ${minPurchaseValue}`}
+                fullWidth
+              />
+              <TextField
+                label="Fee"
+                value={data.fee}
+                name="fee"
+                onChange={handleChange}
+                fullWidth
+              />
+              <TextField
+                label="Passphrase"
+                value={data.passphrase}
+                name="passphrase"
+                onChange={handleChange}
+                fullWidth
+              />
+            </form>
+          </DialogContent>
+        </ThemeProvider>
         <DialogActions>
           <Button onClick={handleSend}>Purchase NFT</Button>
         </DialogActions>

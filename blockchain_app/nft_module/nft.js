@@ -55,7 +55,7 @@ const createNFTToken = ({ name, content, ownerAddress, nonce, value, minPurchase
   nonceBuffer.writeBigInt64LE(nonce);
   const seed = Buffer.concat([ownerAddress, nonceBuffer]);
   const id = cryptography.hash(seed);
-  const slikXp = 12;
+  const slikXp = 0;
 
   return {
     id,
