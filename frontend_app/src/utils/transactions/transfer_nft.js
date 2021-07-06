@@ -25,14 +25,14 @@ export const transferNFTSchema = {
 };
 
 export const transferNFT = async ({
-                                         name,
-                                         nftId,
-                                         recipientAddress,
-                                         passphrase,
-                                         fee,
-                                         networkIdentifier,
-                                         minFeePerByte,
-                                       }) => {
+  name,
+  nftId,
+  recipientAddress,
+  passphrase,
+  fee,
+  networkIdentifier,
+  minFeePerByte,
+}) => {
   const { publicKey } = cryptography.getPrivateAndPublicKeyFromPassphrase(
     passphrase
   );

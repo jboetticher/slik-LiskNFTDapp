@@ -164,6 +164,7 @@ export default function NFTToken(props) {
                         setOpenTransfer(false);
                       }}
                       token={props.item}
+                      passphrase={user.passphrase}
                     />
                   </>
               }

@@ -34,7 +34,7 @@ export default function TransferNFTDialog(props) {
     nftId: props.token.id,
     recipientAddress: "",
     fee: "",
-    passphrase: "",
+    passphrase: props.passphrase,
   });
 
   const handleChange = (event) => {
@@ -90,13 +90,6 @@ export default function TransferNFTDialog(props) {
                 label="Fee"
                 value={data.fee}
                 name="fee"
-                onChange={handleChange}
-                fullWidth
-              />
-              <TextField
-                label="Passphrase"
-                value={data.passphrase}
-                name="passphrase"
                 onChange={handleChange}
                 fullWidth
               />
