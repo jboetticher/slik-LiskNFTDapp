@@ -36,10 +36,16 @@ export const purchaseNFTToken = async ({
   const { publicKey } = cryptography.getPrivateAndPublicKeyFromPassphrase(
     passphrase
   );
-  const address = cryptography.getAddressFromPassphrase(passphrase);
+  const address = cryptography.getAddressFromPassphrase(passphrase).toString("hex");
+
+  console.log("public key:", publicKey);
+  console.log("address:", address);
+
   const {
     sequence: { nonce },
-  } = await fetchAccountInfo(address.toString("hex"));
+  } = await fetchAccountInfo(address);
+
+  
 
   const { id, ...rest } = transactions.signTransaction(
     purchaseNFTTokenSchema,

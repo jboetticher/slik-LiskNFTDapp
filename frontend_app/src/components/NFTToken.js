@@ -185,6 +185,7 @@ export default function NFTToken(props) {
                         setOpenPurchase(false);
                       }}
                       token={props.item}
+                      passphrase={user.key}
                     />
                   </>
                 ) : props.item.tokenHistory[0] != user.address ? (

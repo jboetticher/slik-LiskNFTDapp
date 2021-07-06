@@ -41,7 +41,7 @@ export default function PurchaseNFTTokenDialog(props) {
     nftId: props.token.id,
     purchaseValue: "",
     fee: "",
-    passphrase: "",
+    passphrase: props.passphrase,
   });
 
   const handleChange = (event) => {
@@ -54,12 +54,15 @@ export default function PurchaseNFTTokenDialog(props) {
 
     const res = await purchaseNFTToken({
       ...data,
+      passphrase: props.passphrase,
       networkIdentifier: nodeInfo.networkIdentifier,
       minFeePerByte: nodeInfo.minFeePerByte,
     });
     await api.sendTransactions(res.tx);
     props.handleClose();
   };
+
+  console.log("Bro", props);
 
   return (
     <Fragment>
@@ -96,13 +99,6 @@ export default function PurchaseNFTTokenDialog(props) {
                 label="Fee"
                 value={data.fee}
                 name="fee"
-                onChange={handleChange}
-                fullWidth
-              />
-              <TextField
-                label="Passphrase"
-                value={data.passphrase}
-                name="passphrase"
                 onChange={handleChange}
                 fullWidth
               />
