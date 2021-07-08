@@ -1,6 +1,8 @@
 const { BaseAsset } = require("lisk-sdk");
 const { getAllNFTTokens, setAllNFTTokens } = require("../nft");
 
+const TRANSFER_SLIK_XP = 2;
+
 // 1.extend base asset to implement your custom asset
 class TransferNFTAsset extends BaseAsset {
   // 2.define unique asset name and id
@@ -37,6 +39,7 @@ class TransferNFTAsset extends BaseAsset {
     }
     const token = nftTokens[nftTokenIndex];
     const tokenOwnerAddress = token.ownerAddress;
+    token.slikXp = token.slikXp + TRANSFER_SLIK_XP;
     const senderAddress = transaction.senderAddress;
     // 5.verify that the sender owns the nft
 
