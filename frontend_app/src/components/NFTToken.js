@@ -116,9 +116,9 @@ export default function NFTToken(props) {
       "https://artlords-artwork.s3.amazonaws.com/uploads/image/7918/display_dark_souls_cinematic_3_1200w.jpg";
 
   let slikLevel = "";
-  if (props.item.slikXp > 1000) { slikLevel = "mythic-glow"; }
-  else if (props.item.slikXp > 100) { slikLevel = "legendary-glow"; }
-  else if (props.item.slikXp > 50) { slikLevel = "epic-glow"; }
+  if (props.item.slikXp >= 1000) { slikLevel = "mythic-glow"; }
+  else if (props.item.slikXp >= 100) { slikLevel = "legendary-glow"; }
+  else if (props.item.slikXp >= 50) { slikLevel = "epic-glow"; }
 
   return (
     <UserContext.Consumer>
