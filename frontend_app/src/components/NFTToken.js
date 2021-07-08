@@ -77,7 +77,7 @@ let XPSlider = props => {
   else if (slikXp < 50) { barPrimaryClass = classes.barRare; slikMax = 50; }
   else if (slikXp < 100) { barPrimaryClass = classes.barEpic; slikMax = 100; }
   else if (slikXp < 1000) { barPrimaryClass = classes.barLegendary; slikMax = 1000; }
-  else barPrimaryClass = classes.barMythic;
+  else { barPrimaryClass = classes.barMythic; slikMax = 1000; }
 
   const slikShow = (slikXp / slikMax) * 100;
 
@@ -115,11 +115,16 @@ export default function NFTToken(props) {
     props.item.content != "" ? props.item.content :
       "https://artlords-artwork.s3.amazonaws.com/uploads/image/7918/display_dark_souls_cinematic_3_1200w.jpg";
 
+  let slikLevel = "";
+  if (props.item.slikXp > 1000) { slikLevel = "mythic-glow"; }
+  else if (props.item.slikXp > 100) { slikLevel = "legendary-glow"; }
+  else if (props.item.slikXp > 50) { slikLevel = "epic-glow"; }
+
   return (
     <UserContext.Consumer>
       {user => (
         <ThemeProvider theme={CardTheme}>
-          <Card className="card" style={{ marginTop: '24px' }}>
+          <Card className={"card " + slikLevel} style={{ marginTop: '24px' }}>
             <CardContent style={{ padding: '0px' }}>
               <div className="cardImage" style={{
                 background: `url(${contentURL})`,

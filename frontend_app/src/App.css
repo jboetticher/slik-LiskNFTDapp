@@ -19,3 +19,15 @@ body {
 .App-link {
   color: #61dafb;
 }
+
+.epic-glow:hover {
+  box-shadow: 0 0 32px #9000d3;
+}
+
+.legendary-glow:hover {
+  box-shadow: 0 0 32px #d35400;
+}
+
+.mythic-glow:hover {
+  box-shadow: 0 0 48px #c50505;
+}

@@ -11,7 +11,7 @@ import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { NodeInfoContext } from "../../context";
 import { transferNFT } from "../../utils/transactions/transfer_nft";
 import SlikTheme, { CardTheme } from "../../SlikTheme";
-import * as api from "../../api";
+import firebase from "firebase";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function RequestNFTDialog(props) {
 	const nodeInfo = useContext(NodeInfoContext);
 	const classes = useStyles();
+	var db = firebase.firestore();
 
 	const [data, setData] = useState({
 		name: props.token.name,
@@ -46,7 +47,11 @@ export default function RequestNFTDialog(props) {
 		event.preventDefault();
 
 		// some firebase stuff
-		// send message, nft name + address, user address
+		db.collection("requests").doc(props.token.tokenHistory[0]).set({
+            address: props.token.address,
+            message: data.message,
+			name: props.token.name
+          });
 	};
 
 	return (
@@ -64,8 +69,8 @@ export default function RequestNFTDialog(props) {
 						<form className={classes.root} noValidate autoComplete="off">
 							<TextField
 								label="Message"
-								value={data.recipientAddress}
-								name="recipientAddress"
+								value={data.message}
+								name="message"
 								onChange={handleChange}
 								fullWidth
 								multiline
